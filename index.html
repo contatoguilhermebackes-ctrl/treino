@@ -38,14 +38,28 @@
   table { width: 100%; border-collapse: collapse; margin: 8px 0; text-align: center; font-variant-numeric: tabular-nums; }
   th { font-size: 12px; color: var(--fraco); font-weight: 500; padding: 4px 0; }
   td { padding: 3px 2px; }
-  td input { width: 100%; max-width: 72px; padding: 8px 4px; text-align: center; font-size: 16px; color: var(--texto);
+  td input { width: 100%; max-width: 64px; padding: 8px 4px; text-align: center; font-size: 16px; color: var(--texto);
              background: var(--linha); border: 0; border-radius: 8px; }
   tr.feita td { background: rgba(47, 191, 113, .15); }
   tr.feita input { background: transparent; }
   .check { width: 36px; height: 36px; background: var(--linha); color: var(--fraco); }
   tr.feita .check { background: var(--ok); color: #fff; }
-  #busca { width: 100%; padding: 12px; margin: 8px 0; font-size: 16px; color: var(--texto); background: var(--card);
+  .campo { width: 100%; padding: 12px; margin: 8px 0; font-size: 16px; color: var(--texto); background: var(--card);
            border: 0; border-radius: 10px; }
+  main { padding-bottom: 72px; }
+  .rotina { flex-direction: row; align-items: center; padding: 0 14px 0 0; }
+  .rotina .corpo { flex: 1; display: flex; flex-direction: column; gap: 2px; text-align: left; padding: 12px 14px;
+                   background: none; min-width: 0; }
+  .rotina .corpo span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .contador { display: flex; align-items: center; gap: 8px; color: var(--fraco); font-size: 14px; white-space: nowrap; }
+  .contador button:not(.x) { width: 32px; height: 32px; background: var(--linha); }
+  .x { width: 28px; height: 32px; background: none; color: var(--fraco); font-size: 20px; padding: 0; }
+  #descanso { position: fixed; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 8px;
+              padding: 12px 16px calc(env(safe-area-inset-bottom) + 12px); background: var(--destaque); }
+  #descanso span { flex: 1; } #descanso b { font-variant-numeric: tabular-nums; font-size: 20px; margin-left: 4px; }
+  #descanso button { padding: 8px 10px; background: rgba(0, 0, 0, .25); }
+  .grafico { width: 100%; height: auto; background: var(--card); border-radius: 12px; }
+  .grafico text { fill: var(--fraco); font-size: 10px; }
   .item { display: block; width: 100%; text-align: left; padding: 14px 4px; background: none;
           border-bottom: 1px solid var(--linha); border-radius: 0; }
 </style>

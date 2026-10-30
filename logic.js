@@ -9,6 +9,33 @@ export const EXERCICIOS = [
   'Afundo', 'Elevação pélvica', 'Panturrilha em pé', 'Abdominal', 'Prancha',
 ];
 
+export const novaSerie = () => ({ kg: '', reps: '', feita: false });
+
+export function treinoDaRotina(rotina, agora) {
+  return {
+    inicio: agora,
+    rotina: rotina.nome,
+    exercicios: rotina.exercicios.map(e => ({ nome: e.nome, series: Array.from({ length: e.series }, novaSerie) })),
+  };
+}
+
+export function exerciciosFeitos(treinos) {
+  return [...new Set(treinos.flatMap(t => t.exercicios.map(e => e.nome)))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+}
+
+// Um ponto por treino que tem o exercício: maior carga e volume (kg × reps).
+export function historicoExercicio(treinos, nome) {
+  return treinos.flatMap(t => {
+    const ex = t.exercicios.find(e => e.nome === nome);
+    if (!ex) return [];
+    return [{
+      data: t.inicio,
+      carga: Math.max(...ex.series.map(s => +s.kg || 0)),
+      volume: ex.series.reduce((v, s) => v + (+s.kg || 0) * (+s.reps || 0), 0),
+    }];
+  });
+}
+
 export function volume(treino) {
   return treino.exercicios.reduce((total, ex) =>
     total + ex.series.reduce((s, x) => s + (x.feita ? (+x.kg || 0) * (+x.reps || 0) : 0), 0), 0);
